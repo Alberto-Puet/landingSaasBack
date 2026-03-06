@@ -8,11 +8,11 @@ const app = express();
 
 const cors = require('cors');
 
-// Configuración de CORS más robusta
+// Cambia tu configuración de CORS por esta que es más permisiva para testeo:
 app.use(cors({
-  origin: ['https://www.pedidos360.com', 'https://pedidos360.com', 'https://landing-saas-front-pcoa0eyv0-alberto-puets-projects.vercel.app'],
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
+  origin: '*', // Permite conexiones desde cualquier lugar temporalmente
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json()); 
 
