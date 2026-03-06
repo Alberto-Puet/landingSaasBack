@@ -5,10 +5,17 @@ const { Resend } = require('resend');
 const generatePdf = require('./pdf/server');
 
 const app = express();
-const resend = new Resend(process.env.API_KEY_RESEND);
 
 app.use(cors());
 app.use(express.json()); 
+
+const apiKey = process.env.API_KEY_RESEND;
+
+if (!apiKey) {
+    console.error("❌ ERROR: La variable API_KEY_RESEND no está definida en el entorno.");
+}
+
+const resend = new Resend(apiKey || 're_placeholder'); 
 
 app.post('/generate-diagnostic', async (req, res) => {
     const { email, category } = req.body;
