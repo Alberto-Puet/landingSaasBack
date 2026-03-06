@@ -6,7 +6,14 @@ const generatePdf = require('./pdf/server');
 
 const app = express();
 
-app.use(cors());
+const cors = require('cors');
+
+// Configuración de CORS más robusta
+app.use(cors({
+  origin: ['https://www.pedidos360.com', 'https://pedidos360.com', 'https://landing-saas-front-pcoa0eyv0-alberto-puets-projects.vercel.app'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json()); 
 
 const apiKey = process.env.API_KEY_RESEND;
@@ -62,7 +69,7 @@ app.post('/generate-diagnostic', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 8080; 
 app.listen(PORT, "0.0.0.0", () => { 
     console.log(`🚀 SERVIDOR ESCUCHANDO EN EL PUERTO: ${PORT}`);
 });
