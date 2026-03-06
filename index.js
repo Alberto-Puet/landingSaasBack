@@ -6,11 +6,8 @@ const generatePdf = require('./pdf/server');
 
 const app = express();
 
-const cors = require('cors');
-
-// Cambia tu configuración de CORS por esta que es más permisiva para testeo:
 app.use(cors({
-  origin: '*', // Permite conexiones desde cualquier lugar temporalmente
+  origin: '*', 
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
